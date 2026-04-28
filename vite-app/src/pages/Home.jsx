@@ -26,11 +26,115 @@ const blogPosts = [
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = React.useState(0);
+  const [arrowsInView, setArrowsInView] = React.useState(false);
+  const arrowsSectionRef = React.useRef(null);
+  const heroSectionRef = React.useRef(null);
+  const [serviceModal, setServiceModal] = React.useState(null);
+
+  const services = [
+    {
+      img: '/assets/buy3959.jpg',
+      label: 'Common Workstations',
+      text: 'Buy smarter with expert agents backed by mortgage, legal, and appraisal pros.',
+      related: ['/assets/sell2cef.jpg', '/assets/rent23cd.jpg'],
+    },
+    {
+      img: '/assets/sell2cef.jpg',
+      label: 'Dedicated Workstations',
+      text: 'Sell fast, sell high. Your listing gets pro staging, strategic pricing, and agents who never stop working.',
+      related: ['/assets/buy3959.jpg', '/assets/rent23cd.jpg'],
+    },
+    {
+      img: '/assets/rent23cd.jpg',
+      label: 'Private Cabins',
+      text: 'Access hidden rentals before they hit the market through agents who know every landlord in town.',
+      related: ['/assets/buy3959.jpg', '/assets/sell2cef.jpg'],
+    },
+    {
+      img: '/assets/rent23cd.jpg',
+      label: 'Executive Cabins',
+      text: 'Access hidden rentals before they hit the market through agents who know every landlord in town.',
+      related: ['/assets/buy3959.jpg', '/assets/sell2cef.jpg'],
+    },
+  ];
+
+  React.useEffect(() => {
+    const node = arrowsSectionRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setArrowsInView(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    const node = heroSectionRef.current;
+    if (!node) return undefined;
+
+    let rafId = null;
+
+    const updateHeroProgress = () => {
+      rafId = null;
+      const rect = node.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      const raw = total > 0 ? (window.innerHeight - rect.top) / total : 0;
+      const progress = Math.min(1, Math.max(0, raw));
+      node.style.setProperty('--hero-scroll-progress', progress.toFixed(4));
+    };
+
+    const onScroll = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(updateHeroProgress);
+    };
+
+    updateHeroProgress();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (!serviceModal) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setServiceModal(null);
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [serviceModal]);
 
   return (
     <MainLayout headerColor="transparent">
       {/* Hero */}
-      <section className="hero_root__N0Loz" style={{ visibility: 'visible' }}>
+      <section
+        ref={heroSectionRef}
+        className="hero_root__N0Loz hero_scroll-anim"
+        style={{ visibility: 'visible' }}
+      >
         <div className="hero_top__WegWw">
           <div className="hero_bg__S_r_n">
             <div className="hero_back__8ReFI">
@@ -48,7 +152,6 @@ export default function Home() {
               <div className="hero_cloud__TvA3o"><img alt="" loading="lazy" decoding="async" style={{ color: 'transparent' }} src="/assets/cloudf791.png" /></div>
               <div className="hero_cloud__TvA3o"><img alt="" loading="lazy" decoding="async" style={{ color: 'transparent' }} src="/assets/cloudf791.png" /></div>
             </div>
-            <div className="hero_logo__FxgRj"><RootspaceLogo /></div>
             <div className="hero_smoke__8za_R">
               <img alt="" decoding="async" style={{ color: 'transparent' }} src="/assets/smokee68c.png" />
             </div>
@@ -62,10 +165,7 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <div className="hero_overlap__d3EJV">
-            <div className="hero_smoke__8za_R"><img alt="" decoding="async" style={{ color: 'transparent' }} src="/assets/smokee68c.png" /></div>
-            <div className="hero_overlay__7ubgG"></div>
-          </div>
+          
         </div>
       </section>
 
@@ -83,14 +183,17 @@ export default function Home() {
       </section>
 
       {/* Arrows Section */}
-      <section className="arrows-section_root__yyPBl">
+      <section
+        ref={arrowsSectionRef}
+        className={`arrows-section_root__yyPBl ${arrowsInView ? 'arrows-section_visible' : ''}`}
+      >
         <div className="container_container__v5gtR">
           <div className="arrows-section_title__a4gyt">
             <h2>This isn't just <span className="em">about desk.</span></h2>
           </div>
           <div className="arrows-section_arrows__BPayV">
             {['/assets/151f4.jpg', '/assets/205bb.jpg', '/assets/38776.jpg', '/assets/4f8fb.jpg'].map((src, i) => (
-              <div key={i} className="arrows-section_arrow___KXxg">
+              <div key={i} className="arrows-section_arrow___KXxg" style={{ transitionDelay: `${i * 120}ms` }}>
                 <img alt="" loading="lazy" decoding="async" style={{ color: 'transparent' }} src={src} />
               </div>
             ))}
@@ -118,12 +221,21 @@ export default function Home() {
           </div>
         </div>
         <div className="services_items__PESAO">
-          {[
-            { img: '/assets/buy3959.jpg', label: 'Common Workstations', text: 'Buy smarter with expert agents backed by mortgage, legal, and appraisal pros.' },
-            { img: '/assets/sell2cef.jpg', label: 'Dedicated Workstations', text: 'Sell fast, sell high. Your listing gets pro staging, strategic pricing, and agents who never stop working.' },
-            { img: '/assets/rent23cd.jpg', label: 'Private Cabins', text: 'Access hidden rentals before they hit the market through agents who know every landlord in town.' },
-          ].map(s => (
-            <div key={s.label} className="services_item__D_u7g" style={{ cursor: 'default' }}>
+          {services.map((s, i) => (
+            <div
+              key={`${s.label}-${i}`}
+              className="services_item__D_u7g"
+              role="button"
+              tabIndex={0}
+              style={{ cursor: 'pointer' }}
+              onClick={() => setServiceModal(s)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  setServiceModal(s);
+                }
+              }}
+            >
               <div className="container_container__v5gtR">
                 <div className="services_item-bg___wJGg">
                   <img alt="" loading="lazy" decoding="async" src={s.img} style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, objectFit: 'cover', color: 'transparent' }} />
@@ -140,10 +252,27 @@ export default function Home() {
         </div>
         <div className="container_container__v5gtR">
           <div className="services_brief__OJqWD">
-            <div>Our certified agents guide you through every stage of real estate{' '}<span className="em">with expert knowledge and reliable support.</span></div>
+            <div>At Rootspace, we support you at every step—with thoughtfully designed spaces,{' '}<span className="em">a driven community, and an environment built for real progress.</span></div>
           </div>
         </div>
       </section>
+
+      {serviceModal && (
+        <div className="services-modal_backdrop" role="dialog" aria-modal="true" onClick={() => setServiceModal(null)}>
+          <div className="services-modal_panel" onClick={(event) => event.stopPropagation()}>
+            <button className="services-modal_close" type="button" onClick={() => setServiceModal(null)} aria-label="Close image">
+              ✕
+            </button>
+            <div className="services-modal_header">
+              <div className="services-modal_title">{serviceModal.label}</div>
+              <div className="services-modal_text">{serviceModal.text}</div>
+            </div>
+            <div className="services-modal_media">
+              <img className="services-modal_image" src={serviceModal.img} alt="" />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Features */}
       <section className="features_root__CCic6">
@@ -151,16 +280,17 @@ export default function Home() {
           <div className="features_grid__wL0aQ">
             <div>
               <div className="features_title__vVo3d">
-                <h2><div>Support<br /> Beyond <span className="em">Buying</span><br /> <span className="em">and Selling</span></div></h2>
+                <h2><div>Built<br /> for Work. <span className="em">Designed</span><br /> <span className="em">for Life.</span></div></h2>
               </div>
             </div>
             <div>
-              <div className="features_text__Wp8am"><p>The real estate market never stands still — and neither do we.{' '}<span className="em">Our experts offer continued support beyond the sale.</span></p></div>
+              <div className="features_text__Wp8am"><p>Rootspace isn’t just where you work—{' '}<span className="em">it’s where productivity meets comfort,
+and ideas grow with the right environment.</span></p></div>
               <div className="features_actions__f8ehB">
                 <div>
                   <Link className="button_button-round__TFjlU button_color-primary__JJ7Hh button_inversed__slQcI" to="/services" style={{ display: 'inline-flex' }}>
                     <div className="button_content__6Zh3n">
-                      <div className="button_button-round-text__IEwW5"><span data-text="Discover Our Services">Discover Our Services</span></div>
+                      <div className="button_button-round-text__IEwW5"><span data-text="Discover Our Services">Book a Tour </span></div>
                       <span className="button_icon-after__vljdM"><ArrowRight /></span>
                     </div>
                   </Link>
@@ -170,9 +300,9 @@ export default function Home() {
           </div>
           <div className="features_items__oPgtQ">
             {[
-              { img: '/assets/mortgage-servicesbcea.jpg', title: 'Mortgage Services', text: 'Helping you secure your dream home with flexible mortgage options.' },
-              { img: '/assets/property-managementbd2e.jpg', title: 'Property Management', text: 'Let us handle the details so you can enjoy the rewards.' },
-              { img: '/assets/development95f9.jpg', title: 'Construction and Real Estate Development', text: 'Guiding you through the intricacies of building and developing properties.' },
+              { img: '/assets/mortgage-servicesbcea.jpg', title: 'Private Cabins & Workspaces', text: 'Focus-driven cabins, high-speed WiFi, and a distraction-free setup.' },
+              { img: '/assets/property-managementbd2e.jpg', title: 'Conference & Meeting Rooms', text: 'Fully equipped spaces for meetings, presentations, and collaboration.' },
+              { img: '/assets/development95f9.jpg', title: 'Amenities & Lifestyle', text: 'PS5 gaming 🎮, cafeteria ☕, chill zones, and a community that keeps you energized.' },
             ].map(f => (
               <div key={f.title} className="features_item__IPG1i">
                 <div className="features_item-bg__gntQ1"><img alt={f.title} loading="lazy" decoding="async" style={{ color: 'transparent', width: '100%', height: 'auto' }} src={f.img} /></div>
