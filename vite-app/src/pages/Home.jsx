@@ -86,7 +86,7 @@ export default function Home() {
       <section className="arrows-section_root__yyPBl">
         <div className="container_container__v5gtR">
           <div className="arrows-section_title__a4gyt">
-            <h2>This isn't just <span className="em">about real estate.</span></h2>
+            <h2>This isn't just <span className="em">about desk.</span></h2>
           </div>
           <div className="arrows-section_arrows__BPayV">
             {['/assets/151f4.jpg', '/assets/205bb.jpg', '/assets/38776.jpg', '/assets/4f8fb.jpg'].map((src, i) => (
@@ -96,110 +96,16 @@ export default function Home() {
             ))}
           </div>
           <div className="arrows-section_text__Z1Oii">
-            <p>It's about identity. Progress. Getting unstuck. You're not just looking for a place.{' '}<span className="em">You're looking for alignment. That's what we help you find.</span></p>
+            <p>It’s about clarity. Direction. Momentum. Getting unstuck. You’re not just finding a place to work —{' '}<span className="em">You’re finding where you fit.That’s what Rootspace helps you build.</span></p>
           </div>
         </div>
       </section>
 
-      {/* Real Estate Rewired */}
-      <section>
-        <div className="rewired_wrapper__mqx1v">
-          <div className="container_container__v5gtR">
-            <div className="assymetric-cols_row__tAyrs">
-              <div className="assymetric-cols_col__yB8jY">
-                <div className="rewired_left-col__vLphn">
-                  <div>
-                    <h2 className="rewired_title__1_3e9">
-                      <div>Real Estate,</div>
-                      <div className="em">Rewired.</div>
-                    </h2>
-                  </div>
-                  <Link to="/search" className="button_button-round__TFjlU button_color-primary__JJ7Hh" style={{ display: 'inline-flex' }}>
-                    <div className="button_content__6Zh3n">
-                      <div className="button_button-round-text__IEwW5"><span data-text="Start Your Search">Start Your Search</span></div>
-                      <span className="button_icon-after__vljdM"><ArrowRight /></span>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-              <div className="assymetric-cols_col__yB8jY">
-                <div>
-                  <div className="rewired_label__db93N">Steps:</div>
-                  <div>
-                    <div className="rewired_list-item__R5lrq" data-index="01"><span>Talk to a Real Human. <span className="em">We match you with an expert who actually listens.</span></span></div>
-                    <div className="rewired_list-item__R5lrq" data-index="02"><span>Get Clarity. <span className="em">We define what you really need, not just what's available.</span></span></div>
-                    <div className="rewired_list-item__R5lrq" data-index="03"><span>Move Forward. <span className="em">We find what fits — and make it happen.</span></span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* For Agents */}
-      <section>
-        <div className="for-agents_wrapper__Os8to">
-          <div className="container_container__v5gtR">
-            <div className="assymetric-cols_row__tAyrs">
-              <div className="assymetric-cols_col__yB8jY assymetric-cols_hide-left-col-on-mobile__BXT8l">
-                <div className="assymetric-image-split_label__4qblS">For Agents</div>
-                <div className="assymetric-image-split_small-img__199s0" style={{ position: 'relative', visibility: 'visible', minHeight: '200px' }}>
-                  <img alt="" loading="lazy" decoding="async" src="/assets/1464e.jpg" style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, objectFit: 'cover', color: 'transparent' }} />
-                </div>
-              </div>
-              <div className="assymetric-cols_col__yB8jY">
-                <div className="assymetric-image-split_right-col__HoO1A">
-                  <div className="for-agents_above-text__SVOzq">Don't Rent Your Career. <span className="em">Own It.</span></div>
-                  <div className="assymetric-image-split_image___yxAD" style={{ position: 'relative', visibility: 'visible', minHeight: '300px' }}>
-                    <img alt="" loading="lazy" decoding="async" src="/assets/272cd.jpg" style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, objectFit: 'cover', color: 'transparent' }} />
-                  </div>
-                  <div>
-                    <div className="for-agents_below-text__DBjLv">At FIND, our agents don't just work for the brand—they own a part of it.{' '}<span className="em">We give top performers real equity, so they're invested in more than just your transaction.</span></div>
-                    <div className="for-agents_controls__pBRRC">
-                      <Link className="button_button-round__TFjlU button_color-primary__JJ7Hh" to="/join" style={{ display: 'inline-flex' }}>
-                        <div className="button_content__6Zh3n">
-                          <div className="button_button-round-text__IEwW5"><span data-text="Join The Movement">Join The Movement</span></div>
-                          <span className="button_icon-after__vljdM"><ArrowRight /></span>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
-      {/* Testimonials */}
-      <section className="testimonials_root__PiYLZ">
-        <div className="container_container__v5gtR">
-          <div className="testimonials_title__V_61W"><h2>Don't Take <span className="em">Our Word for It.</span></h2></div>
-          <div className="testimonials_grid__S3Kng">
-            <div className="testimonials_grid-col__LIQw1">
-              <div className="testimonials_divider__j4fVS"></div>
-              <div className="testimonials_carousel__EBBTD">
-                <div className="testimonials_quote__877vg"><p>{testimonials[activeTestimonial].quote}</p></div>
-                <div className="testimonials_info__9SF7C">
-                  <div className="testimonials_author__5Drje">{testimonials[activeTestimonial].author}</div>
-                  <div className="testimonials_separator__tLCPg">/</div>
-                </div>
-                <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
-                  {testimonials.map((_, i) => (
-                    <button key={i} onClick={() => setActiveTestimonial(i)} style={{ width: 8, height: 8, borderRadius: '50%', border: 'none', background: i === activeTestimonial ? '#333' : '#ccc', cursor: 'pointer', padding: 0 }} />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="testimonials_grid-col__LIQw1">
-              <div className="testimonials_preview___uhyO">
-                <img alt="" loading="lazy" decoding="async" style={{ color: 'transparent', width: '100%', height: 'auto' }} src="/assets/16de5.jpg" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+   
+      
 
       {/* Services */}
       <section className="services_root__Ch_WM">
@@ -207,15 +113,15 @@ export default function Home() {
           <div className="services_hgrid__9FHyx">
             <div className="services_hgrid-col__9VVDn"><div className="services_caption__Q_j1k">Services</div></div>
             <div className="services_hgrid-col__9VVDn">
-              <div className="services_title__eMyhw"><h2><div className="services_title__eMyhw">How FIND<br />{' '}<span className="em">Can Help You</span></div></h2></div>
+              <div className="services_title__eMyhw"><h2><div className="services_title__eMyhw">Rootspace  <br />{' '}<span className="em">helps you RENT</span></div></h2></div>
             </div>
           </div>
         </div>
         <div className="services_items__PESAO">
           {[
-            { img: '/assets/buy3959.jpg', label: 'Buy', text: 'Buy smarter with expert agents backed by mortgage, legal, and appraisal pros.' },
-            { img: '/assets/sell2cef.jpg', label: 'Sell', text: 'Sell fast, sell high. Your listing gets pro staging, strategic pricing, and agents who never stop working.' },
-            { img: '/assets/rent23cd.jpg', label: 'Rent', text: 'Access hidden rentals before they hit the market through agents who know every landlord in town.' },
+            { img: '/assets/buy3959.jpg', label: 'Common Workstations', text: 'Buy smarter with expert agents backed by mortgage, legal, and appraisal pros.' },
+            { img: '/assets/sell2cef.jpg', label: 'Dedicated Workstations', text: 'Sell fast, sell high. Your listing gets pro staging, strategic pricing, and agents who never stop working.' },
+            { img: '/assets/rent23cd.jpg', label: 'Private Cabins', text: 'Access hidden rentals before they hit the market through agents who know every landlord in town.' },
           ].map(s => (
             <div key={s.label} className="services_item__D_u7g" style={{ cursor: 'default' }}>
               <div className="container_container__v5gtR">
@@ -278,61 +184,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Blog */}
-      <section className="latest-posts_root__W0OHF">
-        <div className="container_container__v5gtR">
-          <div className="latest-posts_grid__OkkdQ">
-            <div>
-              <div className="latest-posts_title__BvrE_"><h2><div>Blog <span className="em">&amp;</span><br /> <span className="em">Resources</span></div></h2></div>
-            </div>
-            <div>
-              <div className="latest-posts_text__1m3Av"><p>See how we've helped clients achieve their real estate dreams, one successful move at a time.</p></div>
-              <div className="latest-posts_actions__ZwOlM">
-                <Link className="button_button-round__TFjlU button_color-primary__JJ7Hh" to="/blog" style={{ display: 'inline-flex' }}>
-                  <div className="button_content__6Zh3n">
-                    <div className="button_button-round-text__IEwW5"><span>Visit Our Blog</span></div>
-                    <span className="button_icon-after__vljdM"><ArrowRight /></span>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div className="latest-posts_items__LcqgW">
-            {blogPosts.map(p => (
-              <div key={p.slug} className="latest-posts_item__zlarM">
-                <div className="post-entry_root__QwbHf">
-                  <div className="post-entry_grid__FQEYN">
-                    <div className="post-entry_grid-col__tD_KO">
-                      <Link className="post-entry_thumbnail__AD3RU" to={`/blog/${p.slug}`}>
-                        <div className="image_container__RA4p4">
-                          <img alt={p.title} src={p.thumb} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="post-entry_grid-col__tD_KO">
-                      <div className="post-entry_date__zuyY6">{p.date}</div>
-                      <div>
-                        <Link to={`/blog/${p.slug}`} className="post-entry_title__JBO73">{p.title}</Link>
-                        <div className="post-entry_text__Xeca_"><p>{p.brief}</p></div>
-                      </div>
-                      <div className="post-entry_action__LwmZk">
-                        <Link to={`/blog/${p.slug}`}>
-                          <button type="button" className="button_button-round__TFjlU button_color-secondary__FZDOG">
-                            <div className="button_content__6Zh3n">
-                              <div className="button_button-round-text__IEwW5"><span>Read More</span></div>
-                              <span className="button_icon-after__vljdM"><ArrowRight /></span>
-                            </div>
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* Outro */}
       <section className="outro_root__stMHm">

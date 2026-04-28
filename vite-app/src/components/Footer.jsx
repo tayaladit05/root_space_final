@@ -54,21 +54,21 @@ export default function Footer() {
                 <div className="footer_contact-label__gYKsP">Head Office</div>
                 <div className="footer_contact-value__e1jbK">
                   <a href="geo:40.75104385252497,-73.98395637414475">
-                    <div>5 West 37th Street, 12th Floor,</div>
-                    <div>New York, NY 10018</div>
+                    <div>A-46, Manipuram Colony, Char Imli, Bittan Market,</div>
+                    <div>Bhopal - 462016</div>
                   </a>
                 </div>
               </div>
               <div data-contact="email" className="footer_contact__fFxbr">
                 <div className="footer_contact-label__gYKsP">Email Us</div>
                 <div className="footer_contact-value__e1jbK">
-                  <a href="mailto:hello@findrealestate.com">hello@findrealestate.com</a>
+                  <a href="mailto:rootspaceofficial@gmail.com">rootspaceofficial@gmail.com</a>
                 </div>
               </div>
               <div data-contact="phone" className="footer_contact__fFxbr">
                 <div className="footer_contact-label__gYKsP">Call Us</div>
                 <div className="footer_contact-value__e1jbK">
-                  <a href="tel:+12129949965"><span>+1 212 994 9965</span></a>
+                  <a href="tel:+919755597560"><span>+91 9755 597 560</span></a>
                 </div>
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function Footer() {
               <span>Housing Choice Vouchers Welcome</span>
               <span>Se Aceptan Vales de Elección de Vivienda</span>
             </div>
-            <div>FIND</div>
+            <div>Rootspace</div>
             <div>Copyright © 2026</div>
           </div>
         </div>

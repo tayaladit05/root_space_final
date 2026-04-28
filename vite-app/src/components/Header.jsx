@@ -19,13 +19,11 @@ const paperworkLinks = [
 
 const resourcesLinks = [
   { label: 'Blog', to: '/blog' },
-  { label: 'Press & Media', to: '/press-and-media' },
 ];
 
 const aboutLinks = [
   { label: 'About Us', to: '/about' },
   { label: 'Services', to: '/services' },
-  { label: 'Certified Agents', to: '/certified-agents' },
 ];
 
 function DropdownNav({ label, links }) {
@@ -92,36 +90,13 @@ export default function Header({ color = 'transparent' }) {
           </div>
           <nav className="header_nav__if_jI">
             <div className="header_nav-item__Wn05d">
-              <Link to="/search"><span data-text="Search">Search</span></Link>
-            </div>
-            <div className="header_nav-item__Wn05d">
-              <Link to="/agents"><span data-text="Agents">Agents</span></Link>
-            </div>
-            <div className="header_nav-item__Wn05d">
               <Link to="/join"><span data-text="Join">Join</span></Link>
             </div>
             <DropdownNav label="Paperwork" links={paperworkLinks} />
             <DropdownNav label="Resources" links={resourcesLinks} />
             <DropdownNav label="About" links={aboutLinks} />
           </nav>
-          <div className="header_actions__Sv09J">
-            <a className="button_button-round__TFjlU button_color-primary__JJ7Hh" href="https://app.findrealestate.com/authentication/sign-in" target="_blank" rel="noopener noreferrer">
-              <div className="button_content__6Zh3n">
-                <div className="button_button-round-text__IEwW5">
-                  <span data-text="Sign In">Sign In</span>
-                </div>
-              </div>
-            </a>
-          </div>
-          <button
-            className={`burger-btn_btn__IvzqD header_burger-control__YR_x_${menuOpen ? ' burger-btn_active__' : ''}`}
-            aria-label="Menu control"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(o => !o)}
-          >
-            <span></span>
-            <span></span>
-          </button>
+        
         </div>
       </div>
 
@@ -132,9 +107,6 @@ export default function Header({ color = 'transparent' }) {
           <nav className="burger-menu_nav__dAhwA">
             <div className="burger-menu_nav-item__mCA9u">
               <Link to="/search" onClick={() => setMenuOpen(false)}>Search</Link>
-            </div>
-            <div className="burger-menu_nav-item__mCA9u">
-              <Link to="/agents" onClick={() => setMenuOpen(false)}>Agents</Link>
             </div>
             <div className="burger-menu_nav-item__mCA9u">
               <Link to="/join" onClick={() => setMenuOpen(false)}>Join</Link>
