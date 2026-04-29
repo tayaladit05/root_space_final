@@ -75,14 +75,8 @@ export default function Footer() {
           </div>
 
           <div className="footer_links__vib46">
-            <div className="footer_nav__XkBHY">
-              <Link className="footer_nav-link__LFUNG" to="/search"><span data-text="Search">Search</span></Link>
-              <Link className="footer_nav-link__LFUNG" to="/agents"><span data-text="Agents">Agents</span></Link>
-              <Link className="footer_nav-link__LFUNG" to="/join"><span data-text="Join">Join</span></Link>
-              <Link className="footer_nav-link__LFUNG" to="/about"><span data-text="About Us">About Us</span></Link>
-              <a className="footer_nav-link__LFUNG" href="https://app.findrealestate.com/authentication/sign-in" target="_blank" rel="noopener noreferrer">
-                <span data-text="Agent Portal">Agent Portal</span>
-              </a>
+            <div className="footer_big_logo__5ncK8">
+              <img src="/assets/rootspace_logo.png" alt="Rootspace" className="footer_big_logo__rootspace" />
             </div>
             <div className="footer_socials__4JfcA">
               <a href="https://facebook.com/findrealestate.hq" target="_blank" rel="noopener noreferrer" className="footer_social-link__2uQBq">Facebook</a>
@@ -92,23 +86,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="footer_logo__5ncK8">
-            <RootspaceLogo />
-          </div>
-
-          <div className="footer_copyright-container__yt1ht">
-            <div className="footer_sublinks__Pj_ed">
-              <Link to="/terms-of-service">Terms</Link>
-              <Link to="/privacy-policy">Privacy policy</Link>
-              <a target="_blank" href="https://dos.ny.gov/system/files/documents/2025/03/nys-housing-and-anti-discrimination-notice_02.2025.pdf" rel="noopener noreferrer">Fair Housing Notice</a>
-              <Link to="/operating-procedure">Operating Procedure</Link>
-              <Link to="/press-and-media">Press</Link>
-              <span>Housing Choice Vouchers Welcome</span>
-              <span>Se Aceptan Vales de Elección de Vivienda</span>
-            </div>
-            <div>Rootspace</div>
-            <div>Copyright © 2026</div>
-          </div>
+          {/* Footer streamlined: only social links shown per request */}
         </div>
       </div>
     </div>

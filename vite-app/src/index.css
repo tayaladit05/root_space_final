@@ -82,6 +82,82 @@
   min-height: 32rem;
 }
 
+/* Animated service tiles: entrance + hover */
+.services_item__D_u7g {
+  opacity: 0;
+  transform: translateY(24px) scale(0.995);
+  transition: transform 700ms cubic-bezier(.2,.9,.3,1), opacity 700ms ease, box-shadow 300ms ease;
+  will-change: transform, opacity;
+}
+
+.services_item__D_u7g.service-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.services_item__D_u7g .services_item-bg___wJGg {
+  transition: transform 900ms cubic-bezier(.2,.9,.3,1), opacity 600ms ease, filter 700ms ease;
+  transform-origin: center center;
+}
+
+.services_item__D_u7g:hover {
+  z-index: 3;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+}
+
+.services_item__D_u7g:hover .services_item-bg___wJGg {
+  transform: scale(1.06) translateY(-6px);
+  opacity: 0.9;
+}
+
+.services_item__D_u7g .services_item-text__uKETL h3 {
+  transition: transform 900ms cubic-bezier(.2,.9,.3,1), color 400ms ease;
+  transform: translateY(8px);
+  opacity: 0.95;
+}
+
+.services_item__D_u7g.service-visible .services_item-text__uKETL h3 {
+  transform: translateY(0);
+}
+
+.services_item-num__QGde9 {
+  position: absolute;
+  left: 1.6rem;
+  top: 1.6rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: rgba(255,255,255,0.85);
+  font-weight:600;
+  background: rgba(0,0,0,0.18);
+  transform: translateY(-6px) scale(0.98);
+  transition: transform 600ms cubic-bezier(.2,.9,.3,1), opacity 400ms ease;
+}
+
+.services_item__D_u7g:hover .services_item-num__QGde9 {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* content overlay */
+.services_item__D_u7g .services_item-more__pkhNR {
+  transition: transform 700ms cubic-bezier(.2,.9,.3,1), opacity 500ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services_item__D_u7g,
+  .services_item__D_u7g .services_item-bg___wJGg,
+  .services_item__D_u7g .services_item-text__uKETL h3 {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 .services_item__D_u7g > div {
   display: grid;
   grid-template-columns: 1fr;
@@ -132,7 +208,8 @@
   padding: 2.4rem;
   overflow: auto;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-  animation: services-modal-rise 240ms ease-out;
+  transform-origin: center center;
+  animation: services-modal-pop 360ms cubic-bezier(.2,.9,.25,1) both;
 }
 
 .services-modal_close {
@@ -187,6 +264,49 @@
 @keyframes services-modal-rise {
   from { opacity: 0; transform: translateY(16px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes services-modal-pop {
+  0% { opacity: 0; transform: translateY(18px) scale(0.86); }
+  60% { opacity: 1; transform: translateY(-8px) scale(1.03); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Modal inner content stagger */
+.services-modal_title {
+  transform: translateY(10px);
+  opacity: 0;
+  animation: modal-child-in 420ms cubic-bezier(.2,.9,.25,1) forwards;
+  animation-delay: 260ms;
+}
+
+.services-modal_text {
+  transform: translateY(10px);
+  opacity: 0;
+  animation: modal-child-in 420ms cubic-bezier(.2,.9,.25,1) forwards;
+  animation-delay: 340ms;
+}
+
+.services-modal_image {
+  transform: translateY(18px) scale(.99);
+  opacity: 0;
+  animation: modal-image-in 520ms cubic-bezier(.2,.9,.25,1) forwards;
+  animation-delay: 380ms;
+}
+
+@keyframes modal-child-in {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes modal-image-in {
+  from { transform: translateY(18px) scale(.99); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-modal_panel { animation: none; transform: none; }
+  .services-modal_title, .services-modal_text, .services-modal_image { animation: none; transform: none; opacity: 1; }
 }
 
 .services_item-text__uKETL h3 {
@@ -279,4 +399,118 @@
     transform: none;
     opacity: 1;
   }
+}
+
+/* Video scroll-in animation: right-to-left + fade-in */
+.video-anim {
+  overflow: hidden;
+}
+
+.video-anim video {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: translateX(60px);
+  opacity: 0;
+  transition: transform 4000ms cubic-bezier(.2,.9,.3,1), opacity 4000ms ease;
+  will-change: transform, opacity;
+}
+
+.video-anim.visible video {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video-anim video {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Why Us text reveal: left-to-right, match video timing */
+.why-us_root__aGsFp .why-us_title__N3aCA,
+.why-us_root__aGsFp .why-us_text__rT1u9 {
+  transform: translateX(-60px);
+  opacity: 0;
+  transition: transform 4000ms cubic-bezier(.2,.9,.3,1), opacity 4000ms ease;
+  will-change: transform, opacity;
+}
+
+.why-us_root__aGsFp.visible .why-us_title__N3aCA,
+.why-us_root__aGsFp.visible .why-us_text__rT1u9 {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .why-us_root__aGsFp .why-us_title__N3aCA,
+  .why-us_root__aGsFp .why-us_text__rT1u9 {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Arrows-section heading wave animation */
+
+.arrows-section_title__a4gyt .em span {
+  display: inline-block;
+  transform: translateY(0) translateZ(0);
+  animation: arrows-wave 4s cubic-bezier(.2,.9,.3,1) infinite;
+  animation-delay: calc(var(--i) * 0.08s);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+@keyframes arrows-wave {
+  0% { transform: translateY(0) scaleY(1); }
+  20% { transform: translateY(-12px) scaleY(1.06); }
+  40% { transform: translateY(0) scaleY(1); }
+  60% { transform: translateY(12px) scaleY(0.98); }
+  80% { transform: translateY(0) scaleY(1); }
+  100% { transform: translateY(0) scaleY(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrows-section_title__a4gyt .em span {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Big white Rootspace logo in footer (responsive) */
+.footer_big_logo__5ncK8 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2rem 0 1.25rem 0;
+}
+.footer_big_logo__rootspace {
+  width: min(920px, 64%);
+  max-width: 920px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  /* force white appearance for dark-site logos */
+  filter: brightness(0) invert(1) saturate(0) contrast(1.05);
+}
+
+@media (max-width: 768px) {
+  .footer_big_logo__rootspace { width: 92%; }
+}
+
+/* Ensure the footer "Call Us" phone number stays on a single line */
+.footer_contact-value__e1jbK,
+.footer_contact-value__e1jbK a,
+.footer_contact-value__e1jbK a span {
+  white-space: nowrap;
+  display: inline-block;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+@media (max-width: 420px) {
+  .footer_contact-value__e1jbK a span { font-size: 0.95rem; }
 }

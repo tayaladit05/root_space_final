@@ -29,31 +29,95 @@ export default function Home() {
   const [arrowsInView, setArrowsInView] = React.useState(false);
   const arrowsSectionRef = React.useRef(null);
   const heroSectionRef = React.useRef(null);
+  const whyVideoRef = React.useRef(null);
+  const whySectionRef = React.useRef(null);
+  const servicesListRef = React.useRef(null);
   const [serviceModal, setServiceModal] = React.useState(null);
 
   const services = [
     {
       img: '/assets/buy3959.jpg',
       label: 'Common Workstations',
-      text: 'Buy smarter with expert agents backed by mortgage, legal, and appraisal pros.',
+      text: 'Flexible shared seating—walk in and work.',
+      longText: "Our Common Workstation service offers a flexible, shared seating setup where members can work comfortably on a first-come, first-served basis. Simply walk in, choose any available chair and workspace, plug in, and get started—no fixed desks, no long-term commitment.",
+      duration: '1 MONTH',
+      price: '₹ 5,000/-',
+      bullets: [
+        'Clean table and a chair',
+        'High speed internet',
+        'Unlimited coffee & water',
+        'House keeping service',
+        'Separate Clean washrooms for male and female',
+        '24/7 security',
+        'Common telecom service',
+      ],
       related: ['/assets/sell2cef.jpg', '/assets/rent23cd.jpg'],
     },
     {
       img: '/assets/sell2cef.jpg',
       label: 'Dedicated Workstations',
-      text: 'Sell fast, sell high. Your listing gets pro staging, strategic pricing, and agents who never stop working.',
+      text: 'Reserved desk + personal workspace.',
+      longText: 'Reserved desks and chairs exclusively for you, with bigger desks than commons, high-speed internet, power backup, and access to common amenities for a stable, professional experience.',
+      duration: '1 MONTH',
+      price: '₹ 10,000/-',
+      bullets: [
+        'Dedicated table and a chair',
+        'High speed internet',
+        'Unlimited coffee & water',
+        'House keeping service',
+        'Separate Clean washrooms for male and female',
+        '24/7 security',
+        'Common telecom service',
+        'Small storage cabinets',
+        'Free 20 prints/month',
+        'Free PS5 gaming time of 5 hours',
+      ],
       related: ['/assets/buy3959.jpg', '/assets/rent23cd.jpg'],
     },
     {
       img: '/assets/rent23cd.jpg',
       label: 'Private Cabins',
-      text: 'Access hidden rentals before they hit the market through agents who know every landlord in town.',
+      text: 'Fully enclosed cabins for teams.',
+      longText: 'Private Cabins are designed for teams and professionals who need privacy and exclusivity. Each cabin offers a fully enclosed space with dedicated desks and chairs, providing a quiet and professional environment for daily operations and meetings.',
+      duration: '1 MONTH',
+      price: '₹ 20,000/-',
+      bullets: [
+        'Private cabin',
+        'High speed internet',
+        'Unlimited coffee & water',
+        'House keeping service',
+        'Separate Clean washrooms for male and female',
+        '24/7 security',
+        'Dedicated Telecom',
+        'Large storage cabinets',
+        'Free 50 prints/month',
+        'Free PS5 gaming time of 10 hours',
+        'Common assistant to ease your work',
+      ],
       related: ['/assets/buy3959.jpg', '/assets/sell2cef.jpg'],
     },
     {
       img: '/assets/rent23cd.jpg',
-      label: 'Executive Cabins',
-      text: 'Access hidden rentals before they hit the market through agents who know every landlord in town.',
+      label: 'Executive Cabin',
+      text: 'Premium private office for leaders.',
+      longText: 'The Executive Cabin is our most premium cabin designed for leaders and senior professionals. It features a large executive table with comfortable seating, privacy, and refined ambience.',
+      duration: '1 MONTH',
+      price: '₹ 40,000/-',
+      bullets: [
+        'Boss table and chair',
+        'High speed internet',
+        'Unlimited coffee & water',
+        'House keeping service',
+        'Separate Clean washrooms for male and female',
+        '24/7 security',
+        'Dedicated Telecom',
+        'Large storage cabinets',
+        'Free 50 prints/month',
+        'Free PS5 gaming time of 10 hours',
+        'Common assistant to ease your work',
+        '2 extra work stations for staff',
+        'Couches and small table',
+      ],
       related: ['/assets/buy3959.jpg', '/assets/sell2cef.jpg'],
     },
   ];
@@ -77,6 +141,20 @@ export default function Home() {
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
+
+  React.useEffect(() => {
+    if (!arrowsInView) return undefined;
+
+    const titleEm = arrowsSectionRef.current?.querySelector('.arrows-section_title__a4gyt .em');
+    if (!titleEm || titleEm.dataset.split) return undefined;
+
+    const text = titleEm.textContent || '';
+    const letters = Array.from(text);
+    titleEm.innerHTML = letters.map((ch, i) => `<span style="--i:${i}">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
+    titleEm.dataset.split = '1';
+
+    return undefined;
+  }, [arrowsInView]);
 
   React.useEffect(() => {
     const node = heroSectionRef.current;
@@ -107,6 +185,72 @@ export default function Home() {
       window.removeEventListener('resize', onScroll);
       if (rafId !== null) cancelAnimationFrame(rafId);
     };
+  }, []);
+
+  React.useEffect(() => {
+    const node = whyVideoRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            node.classList.add('visible');
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    const node = whySectionRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            node.classList.add('visible');
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.16 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  React.useEffect(() => {
+    const node = servicesListRef.current;
+    if (!node) return undefined;
+
+    const items = Array.from(node.querySelectorAll('.services_item__D_u7g'));
+    if (!items.length) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            items.forEach((el, i) => {
+              el.style.transitionDelay = `${i * 120}ms`;
+              el.classList.add('service-visible');
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
   }, []);
 
   React.useEffect(() => {
@@ -170,13 +314,13 @@ export default function Home() {
       </section>
 
       {/* Why Us */}
-      <section className="why-us_root__aGsFp">
+      <section ref={whySectionRef} className="why-us_root__aGsFp">
         <div className="container_container__v5gtR">
           <div className="why-us_grid__RSZoF">
             <div className="why-us_title__N3aCA"><h2>Why Rootspace ?</h2></div>
             <div className="why-us_text__rT1u9">Rootspace is a co working space in Bhopal,{' '}<span className="em">We help you with just opened, one of the best and biggest co working in bhopal.</span></div>
           </div>
-          <div className="why-us_preview__OofJt">
+          <div className="why-us_preview__OofJt video-anim" ref={whyVideoRef}>
             <video src="/videos/why-us.mp4" autoPlay playsInline loop muted></video>
           </div>
         </div>
@@ -220,7 +364,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="services_items__PESAO">
+        <div className="services_items__PESAO" ref={servicesListRef}>
           {services.map((s, i) => (
             <div
               key={`${s.label}-${i}`}
@@ -265,10 +409,32 @@ export default function Home() {
             </button>
             <div className="services-modal_header">
               <div className="services-modal_title">{serviceModal.label}</div>
-              <div className="services-modal_text">{serviceModal.text}</div>
+              <div className="services-modal_text">{serviceModal.longText || serviceModal.text}</div>
             </div>
             <div className="services-modal_media">
-              <img className="services-modal_image" src={serviceModal.img} alt="" />
+              <div style={{ maxWidth: 720, width: '100%' }}>
+                <img className="services-modal_image" src={serviceModal.img} alt="" />
+
+                <div style={{ marginTop: '1.6rem' }}>
+                  {serviceModal.bullets && (
+                    <div>
+                      <h4 style={{ margin: '0 0 0.6rem' }}>Includes:</h4>
+                      <ul style={{ margin: 0, paddingLeft: '1.4rem' }}>
+                        {serviceModal.bullets.map((b, i) => (
+                          <li key={i} style={{ marginBottom: '0.4rem' }}>{b}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.6rem', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '1.2rem' }}>
+                    <div style={{ opacity: 0.9 }}>{serviceModal.duration}</div>
+                    <div style={{ fontSize: '1.6rem', fontWeight: 700 }}>{serviceModal.price}</div>
+                  </div>
+
+                  <div style={{ marginTop: '0.8rem', opacity: 0.7, fontSize: '0.95rem' }}>For single person. 18% GST is additional. Personalised quotations are made based on different time periods and number of people.</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -89,12 +89,7 @@ export default function Header({ color = 'transparent' }) {
             <Link to="/"><RootspaceLogo /></Link>
           </div>
           <nav className="header_nav__if_jI">
-            <div className="header_nav-item__Wn05d">
-              <Link to="/join"><span data-text="Join">Join</span></Link>
-            </div>
-            <DropdownNav label="Paperwork" links={paperworkLinks} />
-            <DropdownNav label="Resources" links={resourcesLinks} />
-            <DropdownNav label="About" links={aboutLinks} />
+            {/* Top nav items removed as requested */}
           </nav>
         
         </div>
