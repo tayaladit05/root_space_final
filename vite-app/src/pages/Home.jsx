@@ -12,6 +12,32 @@ const ArrowRight = () => (
   </svg>
 );
 
+const ServiceIcon = ({ type }) => {
+  if (type === 'desk') {
+    return (
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M9 18h30v8H9zM13 26v12M35 26v12M16 18v-5h16v5" />
+      </svg>
+    );
+  }
+
+  if (type === 'common') {
+    return (
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M21 10c5 3 6 10 2 15s-11 4-15 0c4-3 9-7 13-15ZM27 12c8 1 12 7 11 14-6 2-12-1-15-6M12 33h21M18 25l-6 8M30 25l5 8" />
+        <circle cx="36" cy="31" r="3" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M8 22 24 10l16 12M13 20v20h22V20M18 33c1-4 3-6 6-6s5 2 6 6v4H18z" />
+      <circle cx="24" cy="23" r="4" />
+    </svg>
+  );
+};
+
 const testimonials = [
   { quote: '"Michael was a great realtor. Such a hard worker, dedicated to helping us find the perfect neighborhood, price point and home. He\'s a workaholic so he was available morning, noon and night. Tireless and dedicated. Would recommend him 100%!"', author: 'Bernadette Hogan' },
   { quote: '"Shirin was truly a blessing to work with. She helped us find our perfect condo in a great area. She was patient and very understanding. I would recommend working with her if you are in need of someone who will go out of their way to make sure you find the home of your dreams."', author: 'Tyleen' },
@@ -22,6 +48,19 @@ const blogPosts = [
   { slug: 'Q1-2026-NYC-Market-Report', date: '2026-04-13', title: 'Q1 2026 NYC Market Report', brief: "Q1 2026 saw strong rental demand, active sales, and shifting pricing across NYC. Here's what it means heading into the spring market.", thumb: 'https://fresh-boot-3c0a0dc212.media.strapiapp.com/medium_nyc_604e40fa02.png' },
   { slug: 'blog-post-1', date: '2026-04-01', title: 'Philly Real Estate: A Winter Chill or a Spring Opportunity?', brief: 'Record-low listings and steady price growth define a unique February for the Philadelphia Metro.', thumb: 'https://fresh-boot-3c0a0dc212.media.strapiapp.com/medium_jonathan_gong_tl3jdt_Z_u_YM_unsplash_5f055e7e75.jpg' },
   { slug: 'What-1M-Buys-in-Different-NYC-Neighborhoods', date: '2026-03-09', title: 'What $1M Buys in Different NYC Neighborhoods', brief: "Curious what $1M can still buy in today's NYC market? Explore a snapshot of available listings across Manhattan.", thumb: 'https://fresh-boot-3c0a0dc212.media.strapiapp.com/medium_gregreese_building_6662138_1920_96e6ea69b1.jpg' },
+];
+
+const galleryImages = [
+  { src: '/assets/collage-home/day-01-photo-00770.jpg', alt: 'Rootspace lounge with warm seating' },
+  { src: '/assets/collage-home/day-01-photo-01247.jpg', alt: 'Rootspace collaborative work area' },
+  { src: '/assets/collage-home/151f4.jpg', alt: 'Rootspace workspace detail' },
+  { src: '/assets/collage-home/205bb.jpg', alt: 'Rootspace cabin area' },
+  { src: '/assets/collage-home/day-01-photo-00874.jpg', alt: 'Rootspace community corner' },
+  { src: '/assets/collage-home/day-01-photo-1134.jpg', alt: 'Rootspace meeting setup' },
+  { src: '/assets/collage-home/38776.jpg', alt: 'Rootspace shared workspace' },
+  { src: '/assets/collage-home/4f8fb.jpg', alt: 'Rootspace interiors' },
+  { src: '/assets/collage-home/ks-08921.jpg', alt: 'Rootspace event moment' },
+  { src: '/assets/collage-home/ks-08895.jpg', alt: 'Rootspace office atmosphere' },
 ];
 
 export default function Home() {
@@ -37,11 +76,12 @@ export default function Home() {
   const services = [
     {
       img: '/assets/buy3959.jpg',
-      label: 'Common Workstations',
-      text: 'Flexible shared seating—walk in and work.',
-      longText: "Our Common Workstation service offers a flexible, shared seating setup where members can work comfortably on a first-come, first-served basis. Simply walk in, choose any available chair and workspace, plug in, and get started—no fixed desks, no long-term commitment.",
+      label: 'Common work stations',
+      icon: 'common',
+      text: 'Flexible, shared seating setup on first-come, first-served basis. No fixed desks, no long-term commitment. Perfect for freelancers and startups.',
+      longText: 'Flexible, shared seating setup on first-come, first-served basis. No fixed desks, no long-term commitment. Perfect for freelancers and startups.',
       duration: '1 MONTH',
-      price: '₹ 5,000/-',
+      price: '₹ 5,000/month',
       bullets: [
         'Clean table and a chair',
         'High speed internet',
@@ -55,11 +95,12 @@ export default function Home() {
     },
     {
       img: '/assets/sell2cef.jpg',
-      label: 'Dedicated Workstations',
-      text: 'Reserved desk + personal workspace.',
+      label: 'Dedicated work stations',
+      icon: 'desk',
+      text: 'Reserved desk and chair exclusively for you. Includes storage cabinets, free prints, and PS5 gaming time.',
       longText: 'Reserved desks and chairs exclusively for you, with bigger desks than commons, high-speed internet, power backup, and access to common amenities for a stable, professional experience.',
       duration: '1 MONTH',
-      price: '₹ 10,000/-',
+      price: '₹ 10,000/month',
       bullets: [
         'Dedicated table and a chair',
         'High speed internet',
@@ -76,11 +117,12 @@ export default function Home() {
     },
     {
       img: '/assets/rent23cd.jpg',
-      label: 'Private Cabins',
-      text: 'Fully enclosed cabins for teams.',
-      longText: 'Private Cabins are designed for teams and professionals who need privacy and exclusivity. Each cabin offers a fully enclosed space with dedicated desks and chairs, providing a quiet and professional environment for daily operations and meetings.',
+      label: 'Dedicated cabins',
+      icon: 'cabin',
+      text: 'Fully enclosed private space. Includes large storage, free prints, PS5 gaming time, and common assistant.',
+      longText: 'Fully enclosed private space. Includes large storage, free prints, PS5 gaming time, and common assistant.',
       duration: '1 MONTH',
-      price: '₹ 20,000/-',
+      price: '₹ 20,000/month',
       bullets: [
         'Private cabin',
         'High speed internet',
@@ -98,11 +140,12 @@ export default function Home() {
     },
     {
       img: '/assets/rent23cd.jpg',
-      label: 'Executive Cabin',
-      text: 'Premium private office for leaders.',
-      longText: 'The Executive Cabin is our most premium cabin designed for leaders and senior professionals. It features a large executive table with comfortable seating, privacy, and refined ambience.',
+      label: 'Executive cabin',
+      icon: 'cabin',
+      text: 'Elite setup with boss table, 2 staff workstations, couches, and premium amenities. The ultimate workspace.',
+      longText: 'Elite setup with boss table, 2 staff workstations, couches, and premium amenities. The ultimate workspace.',
       duration: '1 MONTH',
-      price: '₹ 40,000/-',
+      price: '₹ 40,000/month',
       bullets: [
         'Boss table and chair',
         'High speed internet',
@@ -363,38 +406,27 @@ export default function Home() {
               <div className="services_title__eMyhw"><h2><div className="services_title__eMyhw">Rootspace  <br />{' '}<span className="em">helps you RENT</span></div></h2></div>
             </div>
           </div>
-        </div>
-        <div className="services_items__PESAO" ref={servicesListRef}>
-          {services.map((s, i) => (
-            <div
-              key={`${s.label}-${i}`}
-              className="services_item__D_u7g"
-              role="button"
-              tabIndex={0}
-              style={{ cursor: 'pointer' }}
-              onClick={() => setServiceModal(s)}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  event.preventDefault();
-                  setServiceModal(s);
-                }
-              }}
-            >
-              <div className="container_container__v5gtR">
-                <div className="services_item-bg___wJGg">
-                  <img alt="" loading="lazy" decoding="async" src={s.img} style={{ position: 'absolute', height: '100%', width: '100%', left: 0, top: 0, objectFit: 'cover', color: 'transparent' }} />
+          <div className="services_items__PESAO" ref={servicesListRef}>
+            {services.map((s, i) => (
+              <article
+                key={`${s.label}-${i}`}
+                className="services_item__D_u7g services_pricing-card"
+                style={{ '--card-index': i }}
+              >
+                <div className="services_card-head">
+                  <div className="services_card-icon">
+                    <ServiceIcon type={s.icon} />
+                  </div>
+                  <h3>{s.label}</h3>
                 </div>
-                <div className="services_item-num__QGde9"></div>
-                <div className="services_item-text__uKETL"><h3>{s.text}</h3></div>
-                <div className="services_item-more__pkhNR">
-                  <span>{s.label}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M3.315 10.996h16.623l-.884.707-8.084-8.135h2.526l8.261 8.337-8.286 8.337h-2.526l8.11-8.135.883.708H3.315z" /></svg>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="container_container__v5gtR">
+                <p className="services_card-copy">{s.text}</p>
+                <div className="services_card-price">{s.price}</div>
+                <button className="services_card-button" type="button" onClick={() => setServiceModal(s)}>
+                  Enquire now
+                </button>
+              </article>
+            ))}
+          </div>
           <div className="services_brief__OJqWD">
             <div>At Rootspace, we support you at every step—with thoughtfully designed spaces,{' '}<span className="em">a driven community, and an environment built for real progress.</span></div>
           </div>
@@ -480,27 +512,26 @@ and ideas grow with the right environment.</span></p></div>
         </div>
       </section>
 
-     
-
-      {/* Outro */}
-      <section className="outro_root__stMHm">
-        <div className="outro_bg__9kU9x">
-          <img alt="" loading="lazy" decoding="async" style={{ color: 'transparent', width: '100%', height: 'auto' }} src="/assets/bg786b.jpg" />
-        </div>
+      {/* Gallery */}
+      <section className="rootspace-gallery">
         <div className="container_container__v5gtR">
-          <div className="outro_title__Eqbbj"><h2>Find You. <span className="em">We'll Help You Get There.</span></h2></div>
-          <div className="outro_actions__qfUxG">
-            <div style={{ visibility: 'visible' }}>
-              <Link className="button_button-round__TFjlU button_color-primary__JJ7Hh button_inversed__slQcI" to="/search" style={{ display: 'inline-flex' }}>
-                <div className="button_content__6Zh3n">
-                  <div className="button_button-round-text__IEwW5"><span>Let's Get Started</span></div>
-                  <span className="button_icon-after__vljdM"><ArrowRight /></span>
-                </div>
-              </Link>
-            </div>
+          <div className="rootspace-gallery__head">
+            <div className="rootspace-gallery__caption">Gallery</div>
+            <h2>
+              A closer look at <span>Rootspace life.</span>
+            </h2>
+          </div>
+
+          <div className="rootspace-gallery__collage" aria-label="Rootspace gallery">
+            {galleryImages.map((image, index) => (
+              <figure key={image.src} className={`rootspace-gallery__tile rootspace-gallery__tile--${index + 1}`}>
+                <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
+              </figure>
+            ))}
           </div>
         </div>
       </section>
+
     </MainLayout>
   );
 }
