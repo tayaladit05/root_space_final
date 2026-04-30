@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const RootspaceLogo = () => (
-  <img src="/assets/rootspace_logo.png" alt="FIND" style={{ height: "40px", width: "auto", objectFit: "contain" }} />
+  <img
+    src="/assets/rootspace_logo.png"
+    alt="Rootspace"
+    style={{ height: "40px", width: "auto", objectFit: "contain", filter: "brightness(0)" }}
+  />
 );
 
 const ChevronDown = () => (
@@ -117,7 +121,7 @@ export default function Header({ color = 'transparent' }) {
             </div>
           </nav>
           <div className="burger-menu_actions__In3qE">
-            <a className="button_button-round__TFjlU button_color-primary__JJ7Hh" href="https://app.findrealestate.com/authentication/sign-in" target="_blank" rel="noopener noreferrer">
+            <a className="button_button-round__TFjlU button_color-primary__JJ7Hh" href="#">
               <div className="button_content__6Zh3n">
                 <div className="button_button-round-text__IEwW5">
                   <span data-text="Sign In">Sign In</span>

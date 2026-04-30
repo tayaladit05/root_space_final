@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 
 const RootspaceLogo = () => (
-  <img src="/assets/rootspace_logo.png" alt="FIND" style={{ width: "100%", maxWidth: "400px", height: "auto", objectFit: "contain" }} />
+  <img src="/assets/rootspace_logo.png" alt="Rootspace" style={{ width: "100%", maxWidth: "400px", height: "auto", objectFit: "contain" }} />
 );
 
 const ArrowRight = () => (
@@ -75,7 +75,8 @@ export default function Home() {
 
   const services = [
     {
-      img: '/assets/buy3959.jpg',
+      img: '/assets/services/common_work.jpg',
+      imagePosition: 'center 48%',
       label: 'Common work stations',
       icon: 'common',
       text: 'Flexible, shared seating setup on first-come, first-served basis. No fixed desks, no long-term commitment. Perfect for freelancers and startups.',
@@ -94,7 +95,8 @@ export default function Home() {
       related: ['/assets/sell2cef.jpg', '/assets/rent23cd.jpg'],
     },
     {
-      img: '/assets/sell2cef.jpg',
+      img: '/assets/services/dedicated_workstation.jpg',
+      imagePosition: 'center 48%',
       label: 'Dedicated work stations',
       icon: 'desk',
       text: 'Reserved desk and chair exclusively for you. Includes storage cabinets, free prints, and PS5 gaming time.',
@@ -116,7 +118,8 @@ export default function Home() {
       related: ['/assets/buy3959.jpg', '/assets/rent23cd.jpg'],
     },
     {
-      img: '/assets/rent23cd.jpg',
+      img: '/assets/services/dedicated_cabin.jpg',
+      imagePosition: 'center 52%',
       label: 'Dedicated cabins',
       icon: 'cabin',
       text: 'Fully enclosed private space. Includes large storage, free prints, PS5 gaming time, and common assistant.',
@@ -139,7 +142,8 @@ export default function Home() {
       related: ['/assets/buy3959.jpg', '/assets/sell2cef.jpg'],
     },
     {
-      img: '/assets/rent23cd.jpg',
+      img: '/assets/services/executive_cabin.jpg',
+      imagePosition: 'center 44%',
       label: 'Executive cabin',
       icon: 'cabin',
       text: 'Elite setup with boss table, 2 staff workstations, couches, and premium amenities. The ultimate workspace.',
@@ -411,6 +415,7 @@ export default function Home() {
               <section
                 key={`${s.label}-${i}`}
                 className={`services_row services_row--${i + 1}`}
+                style={{ '--service-image-position': s.imagePosition }}
               >
                 <div className="services_row-media">
                   <img src={s.img} alt="" loading="lazy" decoding="async" />
