@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
 
 const RootspaceLogo = () => (
@@ -365,7 +364,7 @@ export default function Home() {
         <div className="container_container__v5gtR">
           <div className="why-us_grid__RSZoF">
             <div className="why-us_title__N3aCA"><h2>Why Rootspace ?</h2></div>
-            <div className="why-us_text__rT1u9">Rootspace is a co working space in Bhopal,{' '}<span className="em">We help you with just opened, one of the best and biggest co working in bhopal.</span></div>
+            <div className="why-us_text__rT1u9">Rootspace is a co working space in Bhopal,{' '}<span className="em">Get started with one of Bhopal’s newest, finest, and largest co-working spaces—designed to elevate your work experience.</span></div>
           </div>
           <div className="why-us_preview__OofJt video-anim" ref={whyVideoRef}>
             <video src="/videos/why-us.mp4" autoPlay playsInline loop muted></video>
@@ -493,12 +492,12 @@ export default function Home() {
 and ideas grow with the right environment.</span></p></div>
               <div className="features_actions__f8ehB">
                 <div>
-                  <Link className="button_button-round__TFjlU button_color-primary__JJ7Hh button_inversed__slQcI" to="/services" style={{ display: 'inline-flex' }}>
+                  <a className="button_button-round__TFjlU button_color-primary__JJ7Hh button_inversed__slQcI" href="#lets-connect" style={{ display: 'inline-flex' }}>
                     <div className="button_content__6Zh3n">
                       <div className="button_button-round-text__IEwW5"><span data-text="Discover Our Services">Book a Tour </span></div>
                       <span className="button_icon-after__vljdM"><ArrowRight /></span>
                     </div>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>

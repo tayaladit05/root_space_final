@@ -876,24 +876,61 @@
   }
 }
 
-/* Mobile: anchor the hero building to sit just below the header/nav
-   and disable the scroll-based float so it doesn't appear to 'float' */
+/* Mobile: keep the building in the hero scene while preserving the lift motion. */
 @media (max-width: 767px) {
-  .hero_house__aJy7p {
-    /* mobile: let the building flow with the hero but stick above the bottom nav
-       so it doesn't feel permanently fixed and can scroll off when appropriate */
-    position: sticky;
-    bottom: calc(var(--bottom-nav-height, 64px) + 0.5rem);
-    left: 0;
-    right: 0;
-    transform: none !important;
-    will-change: auto;
-    z-index: 10;
+  .hero_root__N0Loz {
+    height: 350svh !important;
+    margin-bottom: -250svh !important;
+    overflow: hidden;
+    z-index: 0;
+    isolation: isolate;
   }
 
-  /* disable the scroll-transform on the animated container for mobile */
+  .hero_top__WegWw {
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .hero_house__aJy7p {
+    position: absolute !important;
+    top: auto;
+    bottom: clamp(3rem, 6svh, 5rem);
+    left: 0;
+    right: 0;
+    height: clamp(26rem, 78vw, 31rem);
+    will-change: transform;
+    z-index: 5;
+  }
+
+  .hero_scroll-anim .hero_title__JpmHS {
+    z-index: 12;
+  }
+
+  .hero_content__DK_Ny {
+    align-items: start;
+    padding-top: clamp(15.5rem, 20svh, 18rem);
+    padding-bottom: 0;
+    z-index: 20;
+  }
+
+  .hero_title__JpmHS h1 {
+    font-size: clamp(4.2rem, 11.8vw, 4.8rem);
+    line-height: 1;
+  }
+
   .hero_scroll-anim .hero_house__aJy7p {
-    transform: none !important;
+    transform: translateY(calc(56px + (var(--hero-scroll-progress) * -112px))) scale(calc(1 + (var(--hero-scroll-progress) * 0.035)));
+  }
+
+  .hero_smoke__8za_R {
+    height: 26rem;
+    bottom: -2rem;
+  }
+
+  .why-us_root__aGsFp,
+  .arrows-section_root__yyPBl {
+    position: relative;
+    z-index: 10;
   }
 }
 
@@ -1645,6 +1682,19 @@
   font-size: 5rem;
 }
 
+/* Tighten the transition from the Why Us media into the arrows copy. */
+.why-us_root__aGsFp {
+  padding-bottom: 2.4rem;
+}
+
+.arrows-section_root__yyPBl {
+  padding-top: 2.4rem;
+}
+
+.arrows-section_title__a4gyt {
+  margin-bottom: 3rem;
+}
+
 @media (min-width: 768px) {
   .why-us_text__rT1u9 {
     font-size: 6.4rem;
@@ -1656,5 +1706,107 @@
 
   .hero_content__DK_Ny {
     padding-bottom: 27rem;
+  }
+
+  .why-us_root__aGsFp {
+    padding-bottom: 5rem;
+  }
+
+  .arrows-section_root__yyPBl {
+    padding-top: 5rem;
+  }
+
+  .arrows-section_title__a4gyt {
+    margin-bottom: 6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .why-us_root__aGsFp {
+    margin-top: -16rem !important;
+    padding-top: 3rem !important;
+    padding-bottom: 0 !important;
+  }
+
+  .why-us_preview__OofJt {
+    aspect-ratio: auto !important;
+    height: 17rem !important;
+    margin-bottom: 3.2rem !important;
+  }
+
+  .why-us_preview__OofJt video,
+  .why-us_preview__OofJt img {
+    object-position: top center;
+  }
+
+  .arrows-section_root__yyPBl {
+    background: #fff;
+    color: #151717;
+    overflow: hidden;
+    padding-top: 0 !important;
+    padding-bottom: 4.8rem;
+  }
+
+  .arrows-section_root__yyPBl > .container_container__v5gtR {
+    width: 100%;
+    max-width: none;
+    padding-left: 2.4rem;
+    padding-right: 2.4rem;
+  }
+
+  .arrows-section_title__a4gyt {
+    display: block;
+    max-width: 100%;
+    margin-bottom: 2.8rem;
+    font-size: clamp(3.7rem, 10.2vw, 4.3rem);
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .arrows-section_title__a4gyt h2 {
+    max-width: 100%;
+    margin: 0;
+    overflow-wrap: normal;
+  }
+
+  .arrows-section_title__a4gyt .em {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .arrows-section_title__a4gyt .em span {
+    animation: none;
+    transform: none;
+  }
+
+  .arrows-section_arrows__BPayV {
+    width: min(100%, 36rem);
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: flex-start;
+  }
+
+  .arrows-section_arrow___KXxg {
+    opacity: 1 !important;
+    transform: none !important;
+    width: 10rem;
+    height: 12.8rem;
+    margin-left: -2.2rem;
+  }
+
+  .arrows-section_arrow___KXxg:first-child {
+    margin-left: 0;
+  }
+
+  .arrows-section_text__Z1Oii {
+    margin-top: 3.2rem;
+    max-width: 100%;
+    font-size: clamp(2rem, 5.8vw, 2.5rem);
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+
+  .arrows-section_text__Z1Oii p {
+    margin: 0;
   }
 }

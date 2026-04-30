@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const ROOTSPACE_EMAIL = 'rootspaceofficial@gmail.com';
+const ROOTSPACE_MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=A-46%2C%20Manipuram%20Colony%2C%20Char%20Imli%2C%20Bittan%20Market%2C%20Bhopal%20462016';
 
 const ArrowRight = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
@@ -63,7 +64,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="rootspace-footer">
+    <footer className="rootspace-footer" id="lets-connect">
       <div className="container_container__v5gtR">
         <div className="rootspace-footer__panel">
           <div className="rootspace-footer__intro">
@@ -110,7 +111,7 @@ export default function Footer() {
             </div>
             <div className="rootspace-footer__detail rootspace-footer__detail--address">
               <div className="rootspace-footer__label">Address</div>
-              <a href="#">
+              <a href={ROOTSPACE_MAPS_URL} target="_blank" rel="noopener noreferrer">
                 A-46, Manipuram Colony, Char Imli, Bittan Market, Bhopal - 462016
               </a>
             </div>
