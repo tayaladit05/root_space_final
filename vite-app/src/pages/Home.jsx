@@ -212,7 +212,10 @@ export default function Home() {
       rafId = null;
       const rect = node.getBoundingClientRect();
       const total = rect.height - window.innerHeight;
-      const raw = total > 0 ? (window.innerHeight - rect.top) / total : 0;
+      const isMobileHero = window.matchMedia('(max-width: 767px)').matches;
+      const raw = total > 0
+        ? (isMobileHero ? -rect.top / total : (window.innerHeight - rect.top) / total)
+        : 0;
       const progress = Math.min(1, Math.max(0, raw));
       node.style.setProperty('--hero-scroll-progress', progress.toFixed(4));
     };

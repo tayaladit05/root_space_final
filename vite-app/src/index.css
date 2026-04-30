@@ -879,27 +879,31 @@
 /* Mobile: keep the building in the hero scene while preserving the lift motion. */
 @media (max-width: 767px) {
   .hero_root__N0Loz {
-    height: 350svh !important;
-    margin-bottom: -250svh !important;
+    height: 340svh !important;
+    margin-bottom: -222svh !important;
     overflow: hidden;
     z-index: 0;
     isolation: isolate;
   }
 
   .hero_top__WegWw {
-    height: 100svh;
+    height: 118svh;
     overflow: hidden;
   }
 
   .hero_house__aJy7p {
     position: absolute !important;
-    top: auto;
-    bottom: clamp(3rem, 6svh, 5rem);
-    left: 0;
-    right: 0;
-    height: clamp(26rem, 78vw, 31rem);
+    top: 52svh;
+    bottom: auto;
+    left: -14vw;
+    right: -14vw;
+    height: clamp(34rem, 115vw, 45rem);
     will-change: transform;
     z-index: 5;
+  }
+
+  .hero_house__aJy7p img {
+    object-position: bottom center;
   }
 
   .hero_scroll-anim .hero_title__JpmHS {
@@ -919,12 +923,18 @@
   }
 
   .hero_scroll-anim .hero_house__aJy7p {
-    transform: translateY(calc(56px + (var(--hero-scroll-progress) * -112px))) scale(calc(1 + (var(--hero-scroll-progress) * 0.035)));
+    transform: translateY(calc(var(--hero-scroll-progress) * -92px)) scale(calc(1 + (var(--hero-scroll-progress) * 0.03)));
   }
 
   .hero_smoke__8za_R {
-    height: 26rem;
-    bottom: -2rem;
+    height: 30rem;
+    bottom: 0;
+    z-index: 8;
+    opacity: 0.88;
+  }
+
+  .hero_scroll-anim .hero_smoke__8za_R {
+    transform: translateY(calc(42% - (var(--hero-scroll-progress) * 150%)));
   }
 
   .why-us_root__aGsFp,
@@ -1033,6 +1043,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .why-us_root__aGsFp .why-us_title__N3aCA,
+  .why-us_root__aGsFp .why-us_text__rT1u9 {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
   .why-us_root__aGsFp .why-us_title__N3aCA,
   .why-us_root__aGsFp .why-us_text__rT1u9 {
     transition: none;
