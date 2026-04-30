@@ -507,7 +507,7 @@ and ideas grow with the right environment.</span></p></div>
           </div>
           <div className="features_items__oPgtQ">
             {[
-              { img: '/assets/mortgage-servicesbcea.jpg', title: 'Private Cabins & Workspaces', text: 'Focus-driven cabins, high-speed WiFi, and a distraction-free setup.' },
+              { img: '/assets/mortgage-servicesbcea.jpg', title: 'Library', text: 'Experience the perfect combination of distraction-free cabins and lightning-fast WiFi for those serious about their goals.' },
               { img: '/assets/property-managementbd2e.jpg', title: 'Conference & Meeting Rooms', text: 'Fully equipped spaces for meetings, presentations, and collaboration.' },
               { img: '/assets/development95f9.jpg', title: 'Amenities & Lifestyle', text: 'PS5 gaming 🎮, cafeteria ☕, chill zones, and a community that keeps you energized.' },
             ].map(f => (

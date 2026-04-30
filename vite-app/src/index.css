@@ -425,7 +425,7 @@
   background-size: cover;
   background-position: center;
   color: #fff;
-  padding: 6rem 0;
+  padding: 8rem 0;
   border-top: 1px solid rgba(255,255,255,0.04);
   border-bottom: 1px solid rgba(0,0,0,0.12);
   overflow: hidden;
@@ -494,13 +494,13 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(32rem, 0.88fr) minmax(40rem, 1.12fr);
   align-items: center;
   gap: 2.4rem;
 }
 
 .services_row-left {
-  max-width: 44rem;
+  max-width: 56rem;
 }
 
 .services_row-number {
@@ -517,9 +517,10 @@
 .services_row-number { display: none !important; }
 
 .services_row-copy {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.6;
+  font-family: 'Helvetica Now Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: clamp(1.8rem, 1.05vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.55;
   color: rgba(255,255,255,0.98);
   transition: transform 520ms cubic-bezier(.2,.9,.25,1), opacity 520ms ease;
 }
@@ -534,8 +535,8 @@
 .services_row-title {
   font-family: 'Helvetica Now Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
-  font-size: clamp(6rem, 16vw, 14rem);
-  line-height: 0.9;
+  font-size: clamp(5.6rem, 6.4vw, 9.2rem);
+  line-height: 1;
   margin: 0;
   text-align: center;
   letter-spacing: -0.02em;
@@ -562,7 +563,7 @@
 }
 
 @media (max-width: 1024px) {
-  .services_row-title { font-size: clamp(4rem, 18vw, 10rem); }
+  .services_row-title { font-size: clamp(4rem, 10vw, 7.2rem); }
 }
 
 @media (max-width: 767px) {
