@@ -345,7 +345,7 @@ export default function Home() {
           </div>
           <div className="hero_content__DK_Ny">
             <div className="container_container__v5gtR">
-              <div className="hero_title__JpmHS"><h1>Work Connect & Belong</h1></div>
+              <div className="hero_title__JpmHS"><h1>Bhopal's Biggest Co-working Space</h1></div>
 
 
             </div>
@@ -406,25 +406,27 @@ export default function Home() {
               <div className="services_title__eMyhw"><h2><div className="services_title__eMyhw">Rootspace  <br />{' '}<span className="em">helps you RENT</span></div></h2></div>
             </div>
           </div>
-          <div className="services_items__PESAO" ref={servicesListRef}>
+          <div className="services_rows" ref={servicesListRef}>
             {services.map((s, i) => (
-              <article
+              <section
                 key={`${s.label}-${i}`}
-                className="services_item__D_u7g services_pricing-card"
-                style={{ '--card-index': i }}
+                className={`services_row services_row--${i + 1}`}
               >
-                <div className="services_card-head">
-                  <div className="services_card-icon">
-                    <ServiceIcon type={s.icon} />
-                  </div>
-                  <h3>{s.label}</h3>
+                <div className="services_row-media">
+                  <img src={s.img} alt="" loading="lazy" decoding="async" />
                 </div>
-                <p className="services_card-copy">{s.text}</p>
-                <div className="services_card-price">{s.price}</div>
-                <button className="services_card-button" type="button" onClick={() => setServiceModal(s)}>
-                  Enquire now
-                </button>
-              </article>
+
+                <div className="services_row-inner container_container__v5gtR">
+                  <div className="services_row-left">
+                    <div className="services_row-number">{i + 1}</div>
+                    <div className="services_row-copy">{s.longText || s.text}</div>
+                  </div>
+                  <div className="services_row-right">
+                    <h2 className="services_row-title">{s.label}</h2>
+                    <div className="services_row-arrow">→</div>
+                  </div>
+                </div>
+              </section>
             ))}
           </div>
           <div className="services_brief__OJqWD">

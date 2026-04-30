@@ -101,6 +101,56 @@
   will-change: transform, opacity;
 }
 
+/* Card background image (hidden by default) */
+.services_card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+}
+.services_card-bg img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  transform: translateY(0%);
+  transition: transform 700ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease, filter 420ms ease;
+  opacity: 1;
+  filter: brightness(0.6) contrast(0.95);
+}
+
+/* Content sits above the image */
+.services_card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* Hover: reveal image sliding top->down */
+.services_item__D_u7g.services_pricing-card:hover .services_card-bg img,
+.services_item__D_u7g.services_pricing-card:focus-within .services_card-bg img {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+/* Make the card visually black initially and increase contrast */
+.services_item__D_u7g.services_pricing-card {
+  background: #0b0b0b;
+  border-color: rgba(255,255,255,0.06);
+}
+
+/* Ensure copy is left-aligned and readable */
+.services_card-copy {
+  color: rgba(255,255,255,0.9);
+  text-align: left;
+  max-width: 44rem;
+}
+
+/* Hide price if still present elsewhere */
+.services_card-price { display: none !important; }
+
 .services_item__D_u7g.services_pricing-card.service-visible {
   opacity: 1;
   transform: translateY(0);
@@ -365,6 +415,131 @@
   animation-delay: 380ms;
 }
 
+/* Full-width service rows (left copy, big right title, background image) */
+.services_rows {
+  display: block;
+}
+
+.services_row {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 6rem 0;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+
+.services_row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* very dark overlay by default */
+  background: linear-gradient(90deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.92) 100%);
+  z-index: 2;
+  transition: background 320ms ease, opacity 320ms ease;
+}
+
+/* on hover make overlay lighter so image shows through */
+.services_row:hover::before,
+.services_row:focus-within::before {
+  background: linear-gradient(90deg, rgba(0,0,0,0.36) 0%, rgba(0,0,0,0.28) 40%, rgba(0,0,0,0.18) 60%, rgba(0,0,0,0.32) 100%);
+}
+
+/* media element that holds the background image and slides up from bottom */
+.services_row-media {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+.services_row-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateY(100%);
+  transition: transform 640ms cubic-bezier(.2,.9,.25,1), opacity 420ms ease, filter 420ms ease;
+  opacity: 0;
+  filter: brightness(0.4) contrast(0.9);
+}
+.services_row:hover .services_row-media img,
+.services_row:focus-within .services_row-media img {
+  transform: translateY(0%);
+  opacity: 1;
+  filter: brightness(1) contrast(1.02) saturate(1.03);
+}
+
+.services_row-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.services_row-left {
+  max-width: 44rem;
+}
+
+.services_row-number {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.24);
+  display: inline-grid;
+  place-items: center;
+  margin-bottom: 1.2rem;
+}
+
+/* remove visible numbers as requested */
+.services_row-number { display: none !important; }
+
+.services_row-copy {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.98);
+}
+
+.services_row-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.services_row-title {
+  font-family: 'Helvetica Now Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(6rem, 16vw, 14rem);
+  line-height: 0.9;
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.services_row-arrow {
+  position: absolute;
+  right: 3rem;
+  font-size: 6rem;
+  opacity: 0.95;
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .services_row-title { font-size: clamp(4rem, 18vw, 10rem); }
+}
+
+@media (max-width: 767px) {
+  .services_row-inner { grid-template-columns: 1fr; padding: 0 2rem; }
+  .services_row-right { order: 2; padding-top: 2rem; }
+  .services_row-left { order: 1; }
+  .services_row-title { font-size: clamp(3rem, 14vw, 7rem); }
+  .services_row-arrow { display: none; }
+}
+
 @keyframes modal-child-in {
   from { transform: translateY(10px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
@@ -422,6 +597,10 @@
   display: inline-block;
   color: #151717;
   text-shadow: 0 1.8rem 5rem rgba(255, 255, 255, 0.22);
+
+  /* Use Helvetica Now Display ExtraBold for the main hero title with fallbacks */
+  font-family: 'Helvetica Now Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 800;
 }
 
 .hero_scroll-anim .hero_title__JpmHS h1::after {
@@ -546,6 +725,27 @@
   }
 }
 
+/* Mobile: anchor the hero building to sit just below the header/nav
+   and disable the scroll-based float so it doesn't appear to 'float' */
+@media (max-width: 767px) {
+  .hero_house__aJy7p {
+    /* mobile: let the building flow with the hero but stick above the bottom nav
+       so it doesn't feel permanently fixed and can scroll off when appropriate */
+    position: sticky;
+    bottom: calc(var(--bottom-nav-height, 64px) + 0.5rem);
+    left: 0;
+    right: 0;
+    transform: none !important;
+    will-change: auto;
+    z-index: 10;
+  }
+
+  /* disable the scroll-transform on the animated container for mobile */
+  .hero_scroll-anim .hero_house__aJy7p {
+    transform: none !important;
+  }
+}
+
 /* Smoke bridge over the Why Us white section */
 .why-us_root__aGsFp {
   overflow: visible;
@@ -617,18 +817,17 @@
   will-change: transform, opacity;
 }
 
-.video-anim.visible video {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
+  .services_item__D_u7g.services_pricing-card:hover .services_card-bg img,
+  .services_item__D_u7g.services_pricing-card:focus-within .services_card-bg img {
+    transform: translateY(-6%);
+    opacity: 1;
+    filter: brightness(0.92) contrast(1.03) saturate(1.02);
+  }
   .video-anim video {
     transition: none;
     transform: none;
     opacity: 1;
   }
-}
 
 /* Why Us text reveal: left-to-right, match video timing */
 .why-us_root__aGsFp .why-us_title__N3aCA,
